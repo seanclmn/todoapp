@@ -60,7 +60,6 @@ function Todo(props) {
 
         const newTodos=[...todos]
         newTodos[todo.ID-1]=newTodo
-        // console.log(newTodos)
         props.setTodo(newTodos)
         
     }
