@@ -1,0 +1,118 @@
+.top-bar-container{
+    width: 90%;
+    height: 100%;
+    padding-bottom: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.form{
+    display: flex;
+    flex-direction: row;
+}
+
+.searchbar{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+}
+
+.dropdown{
+    background-color: white;
+    position: fixed;
+    width: 100px;
+    height: 70px;
+    top: 50px;
+    right: 0px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+ul{
+    padding-left: 0px;
+    list-style-type: none;
+}
+
+#input{
+
+    padding-left: 0px;
+    border-style: solid;
+    border-left-style: none;
+    width: 100%;
+    height: 30px;
+    background-color: rgba(226, 226, 226, 0);
+    border-color: rgb(180, 180, 180);
+    font-size: 18px;
+
+}
+
+#input, select, textarea{
+    color: black;
+}
+
+::placeholder{
+    color: rgb(116, 116, 116);
+}
+
+#input:focus::placeholder{
+    color: rgb(182, 181, 181);
+}
+
+#input:focus{
+    outline: none;
+
+}
+
+#searchbar-icon{
+    margin-top: 5px;
+    height: 20px;
+}
+
+.filters-container{
+    height: 100%;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+
+}
+
+.filter-button{
+    width: 100px;
+    height: 100%;
+}
+
+select{
+    border-left-style: none;
+    margin-top: 5px;
+    width: 90px;
+    height: 34px;
+    border-radius: 0px 2px 2px 0px;
+    border-color: rgb(180, 180, 180);
+
+    font-size: 16px;
+
+}
+
+select:active{
+    outline: none;
+}
+
+.search-icon-container{
+    margin-top: 5px;
+    height: 32px;
+    width: 50px;
+    border-style: solid;
+    border-right-style: none;
+    border-width: 1px;
+    border-radius: 15px 0px 0px 15px;
+
+    border-color: rgb(180, 180, 180);
+}

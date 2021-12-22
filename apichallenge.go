@@ -80,9 +80,6 @@ func UpdateTodo(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	w.Header().Set("Content-Type", "application/json")
 	w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
 
-	w.Header().Set("Access-Control-Allow-Headers", "Origin, Content-Type, X-Auth-Token")
-	w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE, PUT")
-
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(task)
 
@@ -108,7 +105,7 @@ func main() {
 	router.PUT("/todo/:id", UpdateTodo)
 	router.POST("/todo", CreateTodo)
 
-	router.NotFound = http.FileServer(http.Dir("./static"))
+	router.NotFound = http.FileServer(http.Dir("./static/frontend/build"))
 
 	log.Fatal(http.ListenAndServe(":8080", router))
 }

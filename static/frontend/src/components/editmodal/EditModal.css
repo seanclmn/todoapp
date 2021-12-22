@@ -1,0 +1,56 @@
+.close-button{
+    width: 20px;
+    background-color: white;
+    margin-left: 96%;
+    cursor: pointer;
+}
+
+
+.todo-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.modal-todo-input{
+    margin-top: 20px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+label{
+    width: 100%;
+    text-align: left;
+    font-size: 14px;
+}
+input{
+    border-style: solid;
+    border-width: 1px;
+    border-color: rgb(179, 179, 179);
+
+    margin-top: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: rgb(247, 247, 247);
+    width: 320px;
+    height: 40px;
+    font-size: 16px;
+}
+
+
+.submit-button{
+    background-color: rgb(74, 100, 250);
+    margin-top: 20px;
+    width: 340px;
+    height: 45px;
+    font-size: 16px;
+    color: white;
+
+    border-style: none;
+}
+
+.submit-button:hover{
+    background-color: rgb(50, 50, 248);
+
+}
