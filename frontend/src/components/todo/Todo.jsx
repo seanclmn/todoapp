@@ -1,131 +1,53 @@
 import React, {useEffect, useState} from 'react'
+import useMountedState from 'react-usemountedstate'
 import ReactDOM from 'react-dom';
 
-import Modal from 'react-modal'
+import TodoModal from '../todomodal/TodoModal';
+import Tag from '../tag/Tag';
 import './Todo.css'
 
-
-const customStyles = {
-    content: {
-      top: '50%',
-      left: '50%',
-      right: 'auto',
-      bottom: 'auto',
-      marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-    },
-  };
+import TestModal from '../editmodal/EditModal';
 
 function Todo(props) {
-    let subtitle
-    const todos=props.todos
     const todo=props.todo
-    const setTodo = (newTodo)=>setTodo(newTodo)
+    const [title,setTitle]=useState('')
+    const [dueDate,setDueDate]=useState('')
+    const [projects,setProjects]=useState([])
+    const [contexts,setContexts]=useState([])
 
-    const [loading,setLoading]=useState(true)
-    const [modalIsOpen,setIsOpen]=useState(false)
 
+    const [loading,setLoading]=useState(true)    
 
     useEffect(()=>{
-        console.log("hello")
-    })
+        setTitle(todo.Todo)
+        setDueDate(todo.DueDate)
+        setProjects(todo.Projects)
+        setContexts(todo.Contexts)
+        setLoading(false)
 
+    },[])
 
-    if(!todo.Contexts){
+    const [modalIsOpen,setIsOpen]=useState(false)
+
+    function openModal() {
+        setIsOpen(!modalIsOpen);
+    }
+    
+    if(loading || !todo.Contexts ){
         return null
     } 
 
-    function openModal() {
-        setIsOpen(true);
-    }
-    
-    function afterOpenModal() {
-        subtitle.style.color = '#f00';
-    }
-    
-    function closeModal() {
-        setIsOpen(false);
-    }
 
-    function SubmitHandler(event){
-        event.preventDefault()
-    }
-
-    function test(){
-        const newTodo = {
-            ...todo,
-            ['Todo']: 'todo',
-          };
-
-
-        const newTodos=[...todos]
-        newTodos[todo.ID-1]=newTodo
-        props.setTodo(newTodos)
-        
-    }
-
-    
     return (
-        <div className='todo-card'>
-            <div>{todo.Todo}</div>
+        <div className='todo-card'>            
             <header>
-                <h3>{todo.Todo} (Due: {todo.DueDate})</h3> 
+                <h3 style={{lineHeight: "0px"}}>{todo.Todo} (Due: {todo.DueDate})</h3> 
+                <img className="edit-button" onClick={openModal} src={process.env.PUBLIC_URL+'/icons/editing.png'}/>
             </header>
-            {/* <div>{loading}</div> */}
-            <button onClick={test}>button</button>
-
-            <p>Projects: {todo.Projects.map((project)=>(project))}</p>
-            <p>Contexts: {todo.Contexts.map((context)=>(context))}</p>
+            <div className='items-list'> <p>Projects: &nbsp;</p> {projects.map((project)=><p key={project}> {project} </p>)}</div>
+            <div className='items-list'><p>Contexts: &nbsp;</p> {contexts.map((context)=><p key={context}> {context} </p>)}</div>
             
-            <Modal
-                isOpen={modalIsOpen}
-                onAfterOpen={afterOpenModal}
-                onRequestClose={closeModal}
-                style={customStyles}
-                contentLabel="Example Modal"
-                >
-                
-                <button onClick={closeModal}>close</button>
-
-                <form
-                    className='todo-form'
-                    onSubmit={SubmitHandler}
-                    >
-
-                    <div className='modal-todo-input'>
-                            <label for='todo-input'>Todo:</label>
-                            <input 
-                                name='todo-input'
-                                type='text'
-                                defaultValue={todo.Todo}
-                                placeholder='Input your todo here'
-                            />
-                    </div>
-
-                    <div className='modal-todo-input'>
-                            <label for='duedate-input'>Due Date:</label>
-                            <input 
-                                name='duedate-input'
-                                type='text'
-                                defaultValue={todo.DueDate}
-                                placeholder='Input your due date here'
-                            />
-                    </div>
-
-                    <div className='modal-todo-input'>
-                            <label for='duedate-input'>Due Date:</label>
-                            <input
-                                name='duedate-input'
-                                type='text'
-                                defaultValue={todo.DueDate}
-                                placeholder='Input your due date here'
-                            />
-                    </div>
-
-
-                    <button onClick={SubmitHandler}>Update</button>
-                </form>
-            </Modal>
+            <TestModal id={todo.ID} modalIsOpen={modalIsOpen} setIsOpen={setIsOpen}/>
         </div>
     )
 }

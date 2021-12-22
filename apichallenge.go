@@ -46,6 +46,7 @@ func GetTodo(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	}
 
 	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(task)
 
@@ -77,6 +78,11 @@ func UpdateTodo(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	todotxt.WriteToPath(&tasks, "todo.txt")
 
 	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
+
+	w.Header().Set("Access-Control-Allow-Headers", "Origin, Content-Type, X-Auth-Token")
+	w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE, PUT")
+
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(task)
 
@@ -88,6 +94,7 @@ func CreateTodo(w http.ResponseWriter, r *http.Request, ps httprouter.Params) {
 	task, _ := todos.GetTask(2)
 
 	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Access-Control-Allow-Origin", "http://localhost:3000")
 	w.WriteHeader(http.StatusOK)
 	json.NewEncoder(w).Encode(task)
 

@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-
+import './SearchFilter.css'
 function SearchFilter(props) {
 
     function handleChange(event){
@@ -8,16 +8,19 @@ function SearchFilter(props) {
 
     return (
         <form
-            id="searchbar"
+            id="form"
             autoComplete="off"
             >
-            <input 
-                id="input"
-                type="text"
-                name="name"
-                onChange={handleChange}
-                placeHolder="search by filter"
-            />
+            <div className='searchbar'>
+                <img id="searchbar-icon" src={process.env.PUBLIC_URL+'/icons/search.png'}/>
+                <input 
+                    id="input"
+                    type="text"
+    
+                    onChange={handleChange}
+                    placeholder="Search by filter"
+                />
+            </div>
         </form>
     )
 }
