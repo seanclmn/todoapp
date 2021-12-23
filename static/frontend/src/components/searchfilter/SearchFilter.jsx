@@ -2,15 +2,8 @@ import React, {useState} from 'react'
 import './SearchFilter.css'
 function SearchFilter(props) {
 
-    const [dropdown,setDropdown]=useState(false)
-
-    function dropdownSwitch(){
-        setDropdown(!dropdown)
-    }
-    
-
     function handleChange(event){
-        props.setFilter()
+        props.setFilter(event.target.value)
     }
 
 

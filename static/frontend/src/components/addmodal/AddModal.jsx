@@ -33,9 +33,11 @@ function AddModal(props) {
     const [dueDate,setDueDate]=useState('')
     const [completedDate, setCompletedDate]=useState('')
     const [completed,setCompleted]=useState(false)
-
     const [loading,setLoading]=useState(true)
-
+    const modalIsOpen=props.modalIsOpen
+    const setIsOpen=(bool)=>props.setIsOpen(bool)
+    let subtitle
+    Modal.setAppElement('#root')
 
     useEffect(()=>{
         axios.get('http://localhost:8080/todos')
@@ -43,9 +45,7 @@ function AddModal(props) {
             .then(setLoading(false))
     },[])
 
-    let subtitle
-    const modalIsOpen=props.modalIsOpen
-    const setIsOpen=(bool)=>props.setIsOpen(bool)
+
     
     function afterOpenModal() {
         subtitle.style.color = '#f00';
@@ -55,7 +55,22 @@ function AddModal(props) {
         props.setIsOpen(false);
     }
 
-    if(loading || !todos.length) return null
+    function addTodo(event){
+        event.preventDefault()
+        // const newTodo = {
+        //     ...todo,
+        //     ['Todo']: title,
+        // }
+
+        console.log(`http://localhost:8080/todo/${id}`)
+        // axios.post(`http://localhost:8080/todo/${id}`,newTodo)
+        //     .catch((err)=> console.log(err))
+
+    }
+
+
+
+    if(loading) return null
     return (
         <Modal
             isOpen={modalIsOpen}
@@ -103,12 +118,14 @@ function AddModal(props) {
                                 </>
                                 )}
 
-                        <button> Add a new Project</button>
+                        <button onClick={(event)=>{
+                            event.preventDefault()
+                            console.log(projects)}}> Add a new Project</button>
                                                         
                     </div>
 
 
-                    <button className="submit-button" type='submit' >Add</button>
+                    <button className="submit-button" type='submit' onClick={addTodo}>Add</button>
                 </form>
         </Modal>
     )

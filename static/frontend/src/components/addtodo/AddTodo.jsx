@@ -4,8 +4,8 @@ import './AddTodo.css'
 
 import AddModal from '../addmodal/AddModal'
 
-function AddTodo() {
-
+function AddTodo(props) {
+    const todos=props.todos
     const [modalIsOpen,setIsOpen]=useState(false)
 
     function openModal() {
@@ -14,12 +14,12 @@ function AddTodo() {
     
 
     return (
-        <div className='add-todo-container' onClick={openModal}>
-            <img className="plus-icon" style={{height: '20px'}} src={process.env.PUBLIC_URL+'/icons/plus.png'}/>
+        <button className='add-todo-container'>
+            <img onClick={openModal} className="plus-icon" style={{height: '20px'}} src={process.env.PUBLIC_URL+'/icons/plus.png'}/>
 
-            <p style={{marginLeft: "20px"}}>Add a Todo</p>
-            <AddModal modalIsOpen={modalIsOpen} setIsOpen={setIsOpen}/>
-        </div>
+            <p onClick={openModal} className='add-todo-text'>Add a Todo</p>
+            <AddModal todos={todos} modalIsOpen={modalIsOpen} setIsOpen={setIsOpen}/>
+        </button>
     )
 }
 

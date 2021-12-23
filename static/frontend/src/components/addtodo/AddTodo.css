@@ -1,16 +1,27 @@
 .add-todo-container{
     cursor:pointer;
-    padding-left: 10%;
-
-    width: 90%;
+    width: 150px;
     height: 40px;
 
     display: flex;
     flex-direction: row;
-    justify-content: left;
+    justify-content: space-around;
     align-items: center;
+    background-color: rgb(0, 0, 0,0);
+    border-style: none;
 }
-
+/* 
 .add-todo-container:hover{
     background-color: rgb(0, 0, 0,0.1);
+} */
+
+.plus-icon{
+    filter: invert(1);
 }
+
+.add-todo-text{
+    text-align: center;
+    color: white;
+    font-size: 18px;
+}
+

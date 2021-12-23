@@ -3,7 +3,7 @@ import axios from 'axios'
 import ReactDOM from 'react-dom';
 
 import Modal from 'react-modal'
-import './EditModal.css'
+import './TestModal.css'
 
 
 const customStyles = {
@@ -20,7 +20,7 @@ const customStyles = {
     },
   };
   
-function EditModal(props) {
+function TestModal(props) {
 
     const [todo,setTodo]=useState(props.todo)
     const [title,setTitle]=useState('')
@@ -205,4 +205,4 @@ function EditModal(props) {
     )
 }
 
-export default EditModal
+export default TestModal

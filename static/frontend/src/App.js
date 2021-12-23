@@ -6,7 +6,9 @@ import SearchFilter from './components/searchfilter/SearchFilter';
 import AddTodo from './components/addtodo/AddTodo';
 
 function App() {
-  const [json,setJson]=useState([{}])
+  const [loading,setLoading]=useState(true)
+  const [projects,setProjects]=useState([])
+  const [todos,setTodos]=useState([{}])
   const [filter,setFilter]=useState('')
   const [searchCriteria,setSearchCriteria]=useState('')
 
@@ -14,34 +16,69 @@ function App() {
   const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
     
 
+  function filterCheck(arr,filter){
+    let contains = false
+
+    for(let i=0;i<arr.length;i++){
+      if(arr[i].includes(filter)){
+        contains=true
+      }
+    }
+
+    return contains
+  }
 
   useEffect(()=>{
-    fetch('http://localhost:8080/todos')
+    async function fetchTodos(){
+      await fetch('http://localhost:8080/todos')
       .then((res)=>res.json())
-      .then((res)=>setJson(res))
+      .then((res)=>setTodos(res))
+      .then((res)=>setProjects())
+      .then(setLoading(false))
+
+    }
+    fetchTodos()
+
   },[])
 
-  if(!json.length) return null
+  let projectsToRender
+  if (todos[0].Projects){
+    projectsToRender = todos[0].Projects.map(project=>{
+      return <p key={project}>{project}</p>
+    })
+  }
+
+
+
+
+  if(loading) return null
   return (
     <div className="App">
-      {/* <div className='sidepanel-container'>
-        <SearchFilter filter={filter} setFilter={setFilter}/>
-        <AddTodo/>
-      </div> */}
       <div className='search-filter-container'>
           <SearchFilter filter={filter} setFilter={setFilter}/>
-        </div>
+      </div>
+      
       <div className='todos-container'> 
-
-        
         <div className="todos-header">
           <h1 id="page-title">My Todos</h1>
           <h1 id="page-title">{date}</h1>
         </div>
-        {json.map((todo)=>
-          <Todo key={todo.Todo} todo={todo} todos={json} setTodo={setJson}/>)
+        
+        {/* {
+        
+        todos.filter(todo=>todo.Projects.filter()
+          
+          .map((todo)=>
+          <Todo key={todo.Todo} todo={todo} todos={todos} setTodo={setTodos}/>))
+
+
+
+        } */}
+        {todos.map((todo)=>
+          <Todo key={todo.Todo} todo={todo} todos={todos} setTodo={setTodos}/>)
         }
-        <AddTodo/>
+
+        <AddTodo todos={todos}/>
 
       </div>
 
