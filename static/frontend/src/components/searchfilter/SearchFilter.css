@@ -45,6 +45,8 @@ ul{
     padding-left: 0px;
     border-style: solid;
     border-left-style: none;
+    border-width: 1px;
+    border-radius: 0px;
     width: 100%;
     height: 30px;
     background-color: rgba(226, 226, 226, 0);
@@ -91,7 +93,6 @@ ul{
 
 select{
     border-left-style: none;
-    margin-top: 5px;
     width: 90px;
     height: 34px;
     border-radius: 0px 2px 2px 0px;
@@ -106,7 +107,6 @@ select:active{
 }
 
 .search-icon-container{
-    margin-top: 5px;
     height: 32px;
     width: 50px;
     border-style: solid;

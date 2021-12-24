@@ -52,6 +52,7 @@ function EditModal(props) {
     }
     
     function closeModal() {
+        setTodo(props.todo)
         setIsOpen(false);
     }
 
@@ -67,9 +68,13 @@ function EditModal(props) {
             ['Contexts']: contexts,
           };
         
-        console.log(newTodo)
+        
         axios.put(`http://localhost:8080/todo/${props.id}`,newTodo)
             .catch((err)=> console.log(err))
+            .then(props.setTodo(newTodo))
+            .then(closeModal())
+
+
 
     }
 
@@ -80,12 +85,14 @@ function EditModal(props) {
     //Projects
 
     function editProject(event,project){
+        event.preventDefault()
         const newProjects = projects
         newProjects[projects.indexOf(project)]=event.target.value
         console.log(projects)
         setProjects([...newProjects])
     }
     function editContext(event,context){
+        event.preventDefault()
         const newContexts = contexts
         newContexts[contexts.indexOf(context)]=event.target.value
         console.log(contexts)
@@ -99,6 +106,15 @@ function EditModal(props) {
 
     }
 
+    function deleteProject(event,index){
+        event.preventDefault()
+        if(projects.length>1){
+            const newProjects = projects
+            newProjects.splice(index, 1)
+            setProjects([...newProjects])
+        }
+    }
+
 
     function addContext(event){
         event.preventDefault()
@@ -106,9 +122,17 @@ function EditModal(props) {
 
     }
 
+    function deleteContext(event,index){
+        event.preventDefault()
+        if(contexts.length>1){
+            const newContexts = contexts
+            newContexts.splice(index, 1)
+            setContexts([...newContexts])
+        }
+    }
+
 
     if(loading || !todo.Projects) return null
-
 
     return (
         <Modal
@@ -128,6 +152,7 @@ function EditModal(props) {
                     <div className='modal-todo-input'>
                             <label for='todo-input'>Todo</label>
                             <input 
+                                className='todo-duedate-input'
                                 name='todo-input'
                                 type='text'
                                 defaultValue={title}
@@ -142,6 +167,7 @@ function EditModal(props) {
                     <div className='modal-todo-input'>
                             <label for='duedate-input'>Due Date</label>
                             <input 
+                                className='todo-duedate-input'
                                 name='duedate-input'
                                 type='text'
                                 defaultValue={todo.DueDate}
@@ -156,42 +182,54 @@ function EditModal(props) {
 
 
                     <div className='modal-todo-input'>
-                        <label for='project-input'>Projects</label>
+                        {projects.length>0 && <label for='project-input'>Projects</label>}
                         {projects && projects.map(project=>
-                                
+                            <div className='project-context'>
                                 <input
-                                    key = {projects.indexOf(project)}
+                                    // key = {project}
+                                    className='project-context-input'
                                     name='project-input'
                                     type='text'
                                     defaultValue={project}
                                     placeholder='Input your new project here'
-                                    onChange={(event)=>editProject(event,project)}
+                                    onChange={(event)=>{
+                                        editProject(event,project)
+                                    
+                                    }}
                                 />
+                                <button className="delete-button"onClick={(event)=>{
+                                        deleteProject(event,projects.indexOf(project))}}>
+                                    {projects.length>1 && <img style={{width: "70%"}} src={process.env.PUBLIC_URL+'/icons/delete.png'}/>}
+                                </button>
+                            </div>
+                        )}
 
-                            
-                            )}
-
-                        <button onClick={addProject}>
+                        <button className="submit-button" style={{backgroundColor: "#33B025"}} onClick={addProject}>
                              Add a new Project
                         </button>
                                                         
                     </div>
 
                     <div className='modal-todo-input'>
-                            {contexts && contexts.map(context=>
-
+                        {contexts.length>0 && <label for='context-input'>Contexts</label>}
+                        {contexts && contexts.map(context=>
+                            <div className='project-context'>
                                 <input
-                                    key = {contexts.indexOf(context)}
+                                    // key = {context}
+                                    className='project-context-input'
                                     name='context-input'
                                     type='text'
                                     defaultValue={context}
                                     placeholder='Input your new context here'
                                     onChange={(event)=>editContext(event,context)}
                                 />
+                                <button className="delete-button" onClick={(event)=>deleteContext(event,contexts.indexOf(context))}>
+                                    {contexts.length>1 && <img style={{width: "70%"}} src={process.env.PUBLIC_URL+'/icons/delete.png'}/>}
+                                </button>
+                            </div>
+                        )}
 
-                                )}
-
-                        <button onClick={addContext}> 
+                        <button className="submit-button" style={{backgroundColor: "#33B025"}} onClick={addContext}> 
                             Add a new Context
                         </button>
                                                         

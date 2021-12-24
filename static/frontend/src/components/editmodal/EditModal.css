@@ -19,17 +19,33 @@
     align-items: center;
 
 }
+
+.project-context{
+
+    margin-top: 5px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 340px;
+}
+
 label{
     width: 100%;
     text-align: left;
     font-size: 14px;
 }
+
 input{
+    border-radius: 5px;
+
+}
+
+.todo-duedate-input{
     border-style: solid;
     border-width: 1px;
     border-color: rgb(179, 179, 179);
 
-    margin-top: 5px;
     padding-left: 10px;
     padding-right: 10px;
     background-color: rgb(247, 247, 247);
@@ -38,6 +54,37 @@ input{
     font-size: 16px;
 }
 
+.project-context-input{
+    border-style: solid;
+    border-right-style: none;
+    border-width: 1px;
+    border-color: rgb(179, 179, 179);
+
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: rgb(247, 247, 247);
+    width: 290px;
+    height: 40px;
+    font-size: 16px;
+
+    border-radius: 5px 0px 0px 5px;
+
+}
+
+.delete-button{
+    height: 44px;
+    width: 40px;
+    background-color: rgb(247, 247, 247);
+
+    border-width: 1px;
+    border-style: solid;
+    border-left-style: none;
+    border-color: rgb(179, 179, 179);
+    border-radius: 0px 5px 5px 0px;
+
+
+    cursor: pointer;
+}
 
 .submit-button{
     background-color: rgb(74, 100, 250);
@@ -48,6 +95,11 @@ input{
     color: white;
 
     border-style: none;
+    border-radius: 5px;
+
+    cursor: pointer;
+
+
 }
 
 .submit-button:hover{

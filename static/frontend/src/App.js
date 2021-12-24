@@ -13,7 +13,7 @@ function App() {
   const [searchCriteria,setSearchCriteria]=useState('')
 
   const today = new Date();
-  const date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+  const date = (today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear();
     
 
   function filterCheck(arr,filter){
@@ -75,7 +75,7 @@ function App() {
 
         } */}
         {todos.map((todo)=>
-          <Todo key={todo.Todo} todo={todo} todos={todos} setTodo={setTodos}/>)
+          <Todo key={todo.Todo} todo={todo} todos={todos} setTodos={setTodos}/>)
         }
 
         <AddTodo todos={todos}/>

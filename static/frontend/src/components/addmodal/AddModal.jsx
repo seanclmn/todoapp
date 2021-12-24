@@ -21,8 +21,9 @@ const customStyles = {
   };
 
 function AddModal(props) {
+    const [todos,setTodos]=useState(props.todo)
 
-    const [todos,setTodos]=useState([{}])
+    const [todo,setTodo]=useState({})
     const [id,setId]=useState(0)
     const [title,setTitle]=useState('')
     const [priority,setPriority]=useState('')
@@ -39,10 +40,43 @@ function AddModal(props) {
     let subtitle
     Modal.setAppElement('#root')
 
+
+    const exampleTodo ={
+        "ID": 3,
+        "Original": "(C) 2021-02-05 Learn python @context +periodic due:2021-02-12",
+        "Todo": "Learn python",
+        "Priority": "C",
+        "Projects": [
+            "periodic"
+        ],
+        "Contexts": [
+            "context"
+        ],
+        "AdditionalTags": {},
+        "CreatedDate": "2021-02-05T00:00:00-05:00",
+        "DueDate": "2021-02-25T00:00:00-05:00",
+        "CompletedDate": "2021-02-25T00:00:00",
+        "Completed": true
+    }
     useEffect(()=>{
-        axios.get('http://localhost:8080/todos')
-            .then((res)=>setTodos(res.data))
-            .then(setLoading(false))
+   
+        // setTodo(
+        //     {
+        //         "ID": todos.length,
+        //         "Original": "",
+        //         "Todo": "",
+        //         "Priority": "",
+        //         "Projects": [],
+        //         "Contexts": [],
+        //         "AdditionalTags": {},
+        //         "CreatedDate": "2021-02-05T00:00:00-05:00",
+        //         "DueDate": "2021-02-12T00:00:00-05:00",
+        //         "CompletedDate": "0001-01-01T00:00:00Z",
+        //         "Completed": false
+        //         }
+        // )
+        setLoading(false)
+
     },[])
 
 
@@ -57,14 +91,18 @@ function AddModal(props) {
 
     function addTodo(event){
         event.preventDefault()
+
+        
         // const newTodo = {
         //     ...todo,
         //     ['Todo']: title,
-        // }
-
-        console.log(`http://localhost:8080/todo/${id}`)
-        // axios.post(`http://localhost:8080/todo/${id}`,newTodo)
-        //     .catch((err)=> console.log(err))
+        //     ['Projects']: projects,
+        //     ['Contexts']: contexts,
+        //   };
+        
+        // console.log(newTodo)
+        axios.post(`http://localhost:8080/todo`,exampleTodo)
+            .catch((err)=> console.log(err))
 
     }
 
