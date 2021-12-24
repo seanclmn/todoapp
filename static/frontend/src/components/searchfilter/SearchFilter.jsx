@@ -7,6 +7,10 @@ function SearchFilter(props) {
     }
 
 
+    function filterToggle(event,string){
+        event.preventDefault()
+        props.setFilterToggle(string)
+    }
     return (
         <div className='top-bar-container'>
             <form
@@ -31,12 +35,12 @@ function SearchFilter(props) {
                 </div>
             </form>
 
-            <select>
-                <option value="">
+            <select onChange={(event)=>filterToggle(event,event.target.value)}>
+                <option value="projects">
                     Projects
                 </option>
 
-                <option value="">
+                <option value="contexts">
                     Contexts
                 </option>
 
