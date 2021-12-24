@@ -1,2 +1,2 @@
-(A) 2021-02-05 Learn C++ @another-context +hiring due:2021-02-12
+(A) 2021-02-05 Learn Python @another-context +hiring +periodic due:2021-02-12
 (B) 2021-02-05 Implement CreateTodo @hiring @more-hiring @periodic +apichallenge due:2021-02-12

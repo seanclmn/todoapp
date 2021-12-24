@@ -270,7 +270,7 @@ function AddModal(props) {
 
 
 
-                <button className="submit-button" type='submit' onClick={addTodo} >Update</button>
+                <button className="submit-button" type='submit' onClick={addTodo} >Add</button>
             </form>
     </Modal>
     )
