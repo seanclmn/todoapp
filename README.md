@@ -1,6 +1,9 @@
-# Project for Periodic.is
+# Todo App
+
+This is a frontend project involving a todo app made in React, communicating to a Golang server. Frontend reads and edits todos from the server.
 
 ##Dependencies
+
 React Modal and axios.
 
 
