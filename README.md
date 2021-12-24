@@ -1,6 +1,6 @@
 # Todo App
 
-This is a frontend project involving a todo app made in React, communicating to a Golang server. Frontend reads and edits todos from the server.
+This is a frontend project involving a todo app made in React, communicating to a Golang server. Frontend reads and edits todos from the server. You can also filter todos by context or project names, using the searchbar at the top.
 ![Screen Shot 2021-12-24 at 5 03 43 PM](https://user-images.githubusercontent.com/78179581/147373133-41430dc0-cc11-4754-9b16-34588ac452cf.png)
 
 ## Dependencies
