@@ -41,23 +41,6 @@ function AddModal(props) {
     Modal.setAppElement('#root')
 
 
-    const exampleTodo ={
-        "ID": 3,
-        "Original": "(C) 2021-02-05 Learn python @context +periodic due:2021-02-12",
-        "Todo": "Learn python",
-        "Priority": "C",
-        "Projects": [
-            "periodic"
-        ],
-        "Contexts": [
-            "context"
-        ],
-        "AdditionalTags": {},
-        "CreatedDate": "2021-02-05T00:00:00-05:00",
-        "DueDate": "2021-02-25T00:00:00-05:00",
-        "CompletedDate": "2021-02-25T00:00:00",
-        "Completed": true
-    }
     useEffect(()=>{
    
         if(todos){setTodo(
@@ -101,8 +84,8 @@ function AddModal(props) {
           };
         
         console.log(newTodo)
-        axios.post(`http://localhost:8080/todo`,exampleTodo)
-            .catch((err)=> console.log(err))
+        // axios.post(`http://localhost:8080/todo`,newTodo)
+        //     .catch((err)=> console.log(err))
 
     }
 
