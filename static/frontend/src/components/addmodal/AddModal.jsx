@@ -4,8 +4,9 @@ import ReactDOM from 'react-dom';
 
 import Modal from 'react-modal'
 
-// import './AddModal.css'
+import './AddModal.css'
 
+//Styling for modal. Some of this styling is from NPM's page for react-modal.
 const customStyles = {
     content: {
         width: '450px',
@@ -21,8 +22,8 @@ const customStyles = {
   };
 
 function AddModal(props) {
+    //basic state variables here
     const [todos,setTodos]=useState(props.todo)
-
     const [todo,setTodo]=useState({})
     const [id,setId]=useState(0)
     const [title,setTitle]=useState('')
@@ -36,6 +37,8 @@ function AddModal(props) {
     const [completed,setCompleted]=useState(false)
     const [loading,setLoading]=useState(true)
     const modalIsOpen=props.modalIsOpen
+
+    //modal state via props
     const setIsOpen=(bool)=>props.setIsOpen(bool)
     let subtitle
     Modal.setAppElement('#root')
@@ -62,6 +65,7 @@ function AddModal(props) {
 
     },[])
 
+    //Some modal functions for react modal
 
     
     function afterOpenModal() {
@@ -71,6 +75,9 @@ function AddModal(props) {
     function closeModal() {
         props.setIsOpen(false);
     }
+
+
+    //Function for adding todo. Performs a post request to server, or at least it tries to. 
 
     function addTodo(event){
         event.preventDefault()
