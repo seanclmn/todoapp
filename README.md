@@ -1,13 +1,14 @@
 # Todo App
 
 This is a frontend project involving a todo app made in React, communicating to a Golang server. Frontend reads and edits todos from the server.
+![Screen Shot 2021-12-24 at 5 03 43 PM](https://user-images.githubusercontent.com/78179581/147373133-41430dc0-cc11-4754-9b16-34588ac452cf.png)
 
-##Dependencies
+## Dependencies
 
 React Modal and axios.
 
 
-##Bugs
+## Bugs
 
 Biggest bug in this file is regarding keys for the projects and contexts. After every change in the input, state is updated, triggering a rerender. This rerender updates the keys, causing the inputs to lose focus.
 I can't think of a way to create a unique key for each project and context, which won't change after a change in state.
